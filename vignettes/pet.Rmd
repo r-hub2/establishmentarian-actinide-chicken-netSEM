@@ -1,0 +1,78 @@
+---
+title: "netSEM Modeling of the Weathering Driven Degradation of Poly(ethylene-terephthalate) Films"
+author: "Devin A. Gordon, Abdulkerim Gok, Laura S. Bruckman, Roger H. French"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{PET}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+Data Description
+-----------------------------------
+The data set is a study of photolysis and hydrolysis of poly(ethylene-terephthalate) films that contain an ultraviolet stabilizer additive. 
+In this work, polymeric samples were exposed to UV light and moisture according to ASTM G-154 Cycle 4 standard accelerated weathering conditions. 
+Resulting optical chemical changes were determined through optical and infrared (IR) spectroscopy. 
+*Time* is the main exogenous stressor variable and *YI* (yellowness index) is the endogenous response variable. 
+The other columns in the data set (*AbsEdge*, *UVStabBleaching*, *Crystallization*, and *ChainScission*) are values extracted from optical and IR absorbance spectra as single metrics and used as intermediate unit level endogenous mechanistic variables in the netSEM analysis.
+
+
+Load data and run code to build netSEM 
+------------------------------------------
+```{r, message=FALSE, eval=FALSE}
+
+## Load the PET data set
+data(pet)
+?pet
+
+## Run netSEMp1 model
+ans1 <- netSEMp1(pet, exogenous = "Time", endogenous = "YI")
+## Plot the network model for principle 1 
+plot(ans1, cutoff = c(0.3,0.6,0.9))
+
+## Run netSEMp2 model
+ans2 <- netSEMp2(pet, exogenous = "Time", endogenous = "YI")
+## Plot the network model for principle 2 
+plot(ans2, cutoff = c(0.3,0.6,0.9))
+```
+
+Network diagram for data
+--------------------------
+"YI" is the endogenous and all other variables are considered as exogenous.  
+  
+```{r, out.width="675px", echo=FALSE, fig.cap="PET netSEMp1 model"}
+knitr::include_graphics("pet1.png")
+```
+
+```{r, out.width="675px", echo=FALSE, fig.cap="PET netSEMp2 model"}
+knitr::include_graphics("pet2.png")
+```
+
+Discussion
+-----------------------------------
+The network diagram shows a strong quadratic relationship between Time and YI.
+This relationship is useful, as it gives an expected temporal evolution of the property of interest. 
+To understand, which mechanisms contribute most to the yellowing of PET, one can examine the inner portion of the network diagram.
+Time shows strong change-point relationships with FundAbsEdge, UVStabBleaching, and Crystallization, all of which have relatively strong change-point relationships with YI.
+The pathway predict function will help find which pathway describes the mechanistic relationship from Time to YI with lowest error.
+
+```{r, message=FALSE, eval=FALSE}
+# Use pathwayRMSE to examine errors of network paths
+pathwayRMSE(ans)
+```
+
+Pathways with 4 mechanistic variables have RMSE values above 1, which are relatively high in this case. 
+After examining all other pathways with 1-3 mechanistic variables, the direct path Time-->YI is excluded because it will most always have lowest error, one can select the path Time-->UVStabBleaching-->FundAbsEdge-->Crystallization-->YI as a good explanatory path.
+This path has relatively low error (0.2707) and uses a large amount of the data (3 of the 4 mechanistic variables).
+Interpreation of this model gives that with time under UV exposure at elevated temperature and cyclic water spray, the UV stabilizer included in PET bleaches away, which can be detected through changes in the fundamental absorption edge in UV-Vis spectroscopy as the UV absorbing properties from the stabilized disappear from the spectra.
+Now that the polymer film is unprotected, it undergoes an increase in crystallinity as it degrades, which occurs in tandem with the UV-light induced yellowing of the PET film.
+
+Reference
+-----------------------------------
+Gok, A., Ngendahimana, D.K., Fagerholm, C.L., French, R.H., Sun, J., Bruckman, L.S., 2017. Predictive models of poly(ethylene-terephthalate) film degradation under multi-factor accelerated weathering exposures. PLOS ONE 12. https://doi.org/10.1371/journal.pone.0177614
+
+
+Acknowledgment
+-----------------------------------
+The authors would like to acknowledge 3M Company for funding and support throughout this project. 

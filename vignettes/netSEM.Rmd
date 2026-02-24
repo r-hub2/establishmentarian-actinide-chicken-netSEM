@@ -1,0 +1,64 @@
+---
+title: "netSEM v0.6.2"
+author: "Wei-Heng Huang, Laura S. Bruckman, Roger H. French"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction of netSEM}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+What is netSEM v0.6.2 and what does it do?
+---------------------------
+
+The R package 'netSEM v0.6.2' conducts a network statistical analysis (network structural equation modeling) on a dataframe of coincident observations of multiple continuous variables.  
+This analysis builds a pathway model by exploring a pool of domain-knowledge-guided candidate statistical causal relationships between each of the variable pairs, selecting the 'best fit' on the basis of the goodness-of-fit statistic, such as adjusted R-squared value which measures how successful the fit is in explaining the variation of the data. 
+
+The netSEM methodology is motivated by the analysis of systems that are experiencing degradation of some performance characteristic over time, as the system is being exposed to a particular stressor. 
+Here the exposure condition, such as hours in damp heat, is considered as the exogenous, or stressor (S), variable. While the response variable (R) measured for the system, and the mechanistic variables (M) measured on the system are the endogenous variables. 
+In addition to the direct relation between the exogenous variables and the endogenous variable, netSEM investigates potential connections between them through other covariates. 
+
+To this goal, variables are separated into the categories of 'Exogenous' and 'Endogenous'.  
+Relationships exceeding a specified criteria are sought backwards from the main endogenous response variable, through the intermediate mechanistic variables (the other exogenous variables), then back to the last exogenous (S) variable. 
+The intermediate variables usually has the well known "feedback loop" behaviour, as they occur as exogenous variables in some equations and endogenous variables in other equations, thus the nonrecursive case is carefully handled. 
+
+The resulting relationship diagram can be used to generate insight into the pathways of the system under observation. 
+For example the direct pathway from stressor to response, represented by <S|R> variable relationship, is a simple predictive model. 
+While the pathways that incorporate mechanistic (M) variables, represented by degradation pathways <S|M|R>, provide inferential insights into the system's performance over time. 
+And these relationships are guided by domain knowledge, while also being data-driven. 
+By identifying sequences of strong relationships that match well to prior domain knowledge, these pathways can be indicated which are good candidates to address for the improvement of the performance characteristics.
+
+
+How does netSEM v0.7.0 work?
+---------------------------
+
+The R package 'netSEM v0.7.0' analyzes a data frame including a column as a main exogeneous variable and all other columns as endogenous variables. 
+It is also of interest to mention that netSEM provides a measurement statistical model for the most important relationships in the SEM scenario, which is the "non-recursive Relationships" where the exogenous variables can occur as endogenous variables.  
+In the current version all variables are required to be continuous.
+
+The functions 'netSEMp1()' and 'netSEMp2()' takes this dataframe as the main input, along with optional arguments specifying the column names of the exogenous and endogenous variables.
+
+Starting with the main endogenous variable to the last exogenous variable through the intermediate variables which are considered as exogenous variable, where the non-recursive relationships usually occur. 
+For each two variables "pairwise" data are fit with each of the following six functional forms that appear most frequently in time domain science: simple linear regression, quadratic regression, simple quadratic regression, exponential regression, logarithmic regression and change point regression.  
+The 'best' of these functional forms is chosen on the specific criterion of the adjusted r-squared value. 
+
+The 'netSEMp1()' function outputs an S3 R object that has information about adjusted R-squared values and other statistical metrics for each pairwise relationship in the network model.
+The 'netSEMp2()' function outputs an S3 R object that includes equations relating exogenous and endogenous variables using multiple regression and the corresponding adjusted R-squared values.
+
+Install and load the package
+--------------------------
+
+After downloading the package file "netSEM_0.7.0.tar.gz", put it in your preferred working directory and run both of the following lines:
+```{r, eval=FALSE}
+install.packages("netSEM_0.7.0.tar.gz", repos = NULL, type = "source")
+library(netSEM)
+```
+
+Sources
+------------
+1. Bruckman, Laura S., Nicholas R. Wheeler, Junheng Ma, Ethan Wang, Carl K. Wang, Ivan Chou, Jiayang Sun, and Roger H. French. "Statistical and Domain Analytics Applied to PV Module Lifetime and Degradation Science." IEEE Access 1 (2013): 384-403. http://dx.doi.org/10.1109/ACCESS.2013.2267611      
+
+2. Bruckman, Laura S., Nicholas R. Wheeler, Ian V. Kidd, Jiayang Sun, and Roger H. French. "Photovoltaic Lifetime and Degradation Science Statistical Pathway Development: Acrylic Degradation." In SPIE Solar Energy+ Technology, 8825:88250D-8. International Society for Optics and Photonics, 2013. https://doi.org/10.1117/12.2024717 
+
+
