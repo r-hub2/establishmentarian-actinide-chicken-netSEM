@@ -38,9 +38,11 @@ For example, in the quadratic functional form \eqn{y \sim b_0 + b_1 x + b_2 x^2}
 If there are less than 3 coefficients to estimate, the extra P-value field is filled with NA's.
 }
 \examples{
+\dontrun{
 ## Load the sample acrylic data set
 data(acrylic)
 
 ## Run netSEM_markovian
 ans <- netSEMp1(acrylic, "IrradTot", "YI")
+}
 }

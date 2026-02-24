@@ -23,7 +23,7 @@ The function finds the best paths through netSEM modeling.
 paths_analysis uses a recursive algorithm to rank all different paths through a netSEM model by the lowest R2adj in the pathway (the weakest link). Function returns the best paths in a data frame.
 }
 \examples{
-\donttest{
+\dontrun{
 ## Load the sample acrylic data set
 data(acrylic)
 

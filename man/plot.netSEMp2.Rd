@@ -41,6 +41,7 @@ Plot netSEMp2 result
 plot.netSEMp2 plots a structural equation network model diagram, fitted under principle 2, based on best functional form for each selected pairwise variable.
 }
 \examples{
+\dontrun{
 # Load acrylic data set
 data(acrylic)
 
@@ -51,7 +52,6 @@ ans <- netSEMp2(acrylic, "IrradTot", "YI")
 plot(ans, cutoff = c(0.3,0.6,0.8), title = "Acrylic")
 
 \donttest{
-\dontrun{
 # plot the network diagram and save file
 plot(ans, cutoff = c(0.3,0.6,0.8), 
      plot.save = TRUE, 

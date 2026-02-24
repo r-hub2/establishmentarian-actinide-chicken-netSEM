@@ -24,6 +24,7 @@ utils::globalVariables(c(
   "adj.r.squared",
   "best_model",
   "r.squared",
+  "x",
   "mfExt",
   "resp",
   # netSEMp2.R

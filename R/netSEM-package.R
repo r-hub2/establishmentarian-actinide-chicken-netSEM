@@ -22,7 +22,6 @@
 #' @importFrom janitor clean_names
 #' @importFrom stringr str_detect str_split str_replace regex
 #' @importFrom stats lm coef na.omit predict residuals runif var nls nls.control setNames
-#' @importFrom DiagrammeRsvg export_svg
 #' @importFrom butcher axe_data axe_env
 #' @importFrom rcompanion nagelkerke
 #' @importFrom utils head

@@ -12,7 +12,7 @@
 #' @export
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' ## Load the sample acrylic data set
 #' data(acrylic)
 #'

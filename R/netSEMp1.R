@@ -28,14 +28,18 @@
 ##' @export
 ##'
 ##' @examples
+##' \dontrun{
 ##' ## Load the sample acrylic data set
 ##' data(acrylic)
 ##'
 ##' ## Run netSEM_markovian
 ##' ans <- netSEMp1(acrylic, "IrradTot", "YI")
+##' }
 
 ####### v0.7.0 ##################
 netSEMp1 <- function(x, exogenous, endogenous) {
+  # place holder for mfExt for 'no visible binding' note
+  mfExt <- NULL
   # Check for exogenous & endogenous input. Error if missing.
   # Rearrange dataframe based on exogenous & endogenous specification.
   # Transformed dataframe structure is: Stressor, Response,...

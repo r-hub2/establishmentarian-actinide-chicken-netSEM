@@ -35,6 +35,7 @@ Principle 2 resembles the multiple regression principle in the way multiple pred
 Data is analysed first using Principle 1 to find the best models. If needed, transformations based on the best models are applied to the predictors. Starting from the system response variable, each variable is regressed on all other variables except for the system response in an additive multiple regression model, which is reduced by a stepwise selection using stepAIC(). Then, for each selected variable, fitted regression for 6 selected functional forms (8 if strength type problem) and pick the best.
 }
 \examples{
+\dontrun{
 ## Load the sample acrylic data set
 data(acrylic)
 
@@ -43,6 +44,7 @@ ans <- netSEMp2(acrylic, "IrradTot", "YI")
 
 ## Using BIC criterion
 ans <- netSEMp2(acrylic, "IrradTot", "YI", criterion = "BIC")
+}
 }
 \seealso{
 \link[netSEM]{netSEMp1}

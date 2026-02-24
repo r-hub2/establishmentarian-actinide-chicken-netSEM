@@ -26,6 +26,7 @@
 ##' 
 ##' 
 ##' @examples
+##' \dontrun{
 ##' ## Load the sample acrylic data set
 ##' data(acrylic)
 ##' 
@@ -34,6 +35,7 @@
 ##' 
 ##' ## Using BIC criterion
 ##' ans <- netSEMp2(acrylic, "IrradTot", "YI", criterion = "BIC")
+##' }
 
 ####### v0.7.0 ##################
 netSEMp2 <-

@@ -21,6 +21,7 @@
 ##' @seealso \link[netSEM]{netSEMp1}
 ##'
 ##' @examples
+##' \dontrun{
 ##' # Load acrylic data set
 ##' data(acrylic)
 ##' 
@@ -52,7 +53,6 @@
 ##'      title = "Acrylic", path = c('red', 'IAD1->IAD2p'), 
 ##'      latent = c('IAD1' = 'FundAbsEdge'), style = FALSE)
 ##' 
-##' \dontrun{
 ##' # Save plot 
 ##' plot.netSEMp1(ans, acrylic, 
 ##'               cutoff = c(0.3, 0.6, 0.8), 

@@ -10,11 +10,13 @@
 ##' @export
 ##'
 ##' @examples
+##' \dontrun{
 ##' ## Load the sample acrylic data set
 ##' data(acrylic)
 ##'
 ##' ## Run netSEMp1_predict
 ##' ans <- var_selection(a = acrylic, exogenous = "IrradTot", endogenous = "YI")
+##' }
 
 ####### v0.8.0 ##################
 var_selection <- function(a, exogenous, endogenous) {

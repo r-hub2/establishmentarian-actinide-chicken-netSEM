@@ -44,6 +44,7 @@ Plot netSEMp1 result
 plot.netSEMp1 plots a network structural equation network model diagram, fitted under principle 1, based on best functional form for each selected pairwise variable.
 }
 \examples{
+\dontrun{
 # Load acrylic data set
 data(acrylic)
 
@@ -74,7 +75,6 @@ plot(ans, cutoff = c(0.3,0.6,0.8),
      title = "Acrylic", path = c('red', 'IAD1->IAD2p'), 
      latent = c('IAD1' = 'FundAbsEdge'), style = FALSE)
 
-\dontrun{
 # Save plot 
 plot.netSEMp1(ans, acrylic, 
               cutoff = c(0.3, 0.6, 0.8), 

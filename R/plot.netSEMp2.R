@@ -20,6 +20,7 @@
 ##' @seealso \link[netSEM]{netSEMp2}
 ##'
 ##' @examples
+##' \dontrun{
 ##' # Load acrylic data set
 ##' data(acrylic)
 ##' 
@@ -30,7 +31,6 @@
 ##' plot(ans, cutoff = c(0.3,0.6,0.8), title = "Acrylic")
 ##' 
 ##' \donttest{
-##' \dontrun{
 ##' # plot the network diagram and save file
 ##' plot(ans, cutoff = c(0.3,0.6,0.8), 
 ##'      plot.save = TRUE, 

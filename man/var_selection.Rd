@@ -20,9 +20,11 @@ A character string of the variable that best represents a specific degradation m
 This function selects the variable that best represents a specific degradation mechanism with the greatest adjusted R^2 of <S|M|.
 }
 \examples{
+\dontrun{
 ## Load the sample acrylic data set
 data(acrylic)
 
 ## Run netSEMp1_predict
 ans <- var_selection(a = acrylic, exogenous = "IrradTot", endogenous = "YI")
+}
 }
